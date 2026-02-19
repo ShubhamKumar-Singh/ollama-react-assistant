@@ -81,9 +81,17 @@ function App() {
   const isDark = theme === 'dark';
 
   // Background styles with your Black Panther image
-  const backgroundStyle = {
+  const backgroundStyle = isDark ? {
     backgroundImage: `
       linear-gradient(135deg, rgba(10, 10, 10, 0.75), rgba(26, 19, 33, 0.75), rgba(15, 20, 35, 0.75), rgba(26, 10, 26, 0.75)),
+      url('${blackPantherBg}')
+    `,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundAttachment: 'fixed',
+  } : {
+    backgroundImage: `
+      linear-gradient(135deg, rgba(245, 245, 245, 0.9), rgba(235, 235, 250, 0.9), rgba(240, 248, 255, 0.9), rgba(250, 245, 245, 0.9)),
       url('${blackPantherBg}')
     `,
     backgroundSize: 'cover',
