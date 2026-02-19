@@ -4,6 +4,7 @@ import { RootState } from './store';
 import { setInput, addMessage, setLoading, resetInput, toggleTheme } from './chatSlice';
 import { askOllama } from './ollamaApi';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import blackPantherBg from './black_panther_is_sitting_in_car_background_4k_hd_black_panther-3840x2160.jpg';
 
 // Clock Component for displaying time and date
 function Clock() {
@@ -79,17 +80,15 @@ function App() {
 
   const isDark = theme === 'dark';
 
-  // Animated background styles
-  const backgroundStyle = isDark ? {
-    background: `
-      linear-gradient(-45deg, #0a0a0a, #1a1321, #0f1423, #1a0a1a)`,
-    backgroundSize: '400% 400%',
-    animation: 'gradientShift 15s ease infinite',
-  } : {
-    background: `
-      linear-gradient(-45deg, #f5f5f5, #eae8f0, #f0f5f8, #f5f0f0)`,
-    backgroundSize: '400% 400%',
-    animation: 'gradientShiftLight 15s ease infinite',
+  // Background styles with your Black Panther image
+  const backgroundStyle = {
+    backgroundImage: `
+      linear-gradient(135deg, rgba(10, 10, 10, 0.75), rgba(26, 19, 33, 0.75), rgba(15, 20, 35, 0.75), rgba(26, 10, 26, 0.75)),
+      url('${blackPantherBg}')
+    `,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundAttachment: 'fixed',
   };
 
   return (
@@ -136,9 +135,10 @@ function App() {
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          paddingTop: '100px',
+          justifyContent: 'center',
+          paddingTop: '80px',
           paddingBottom: '40px',
-          color: isDark ? '#fff' : '#1a1a1a',
+          color: '#fff',
           transition: 'all 0.3s ease',
           position: 'relative',
           overflow: 'hidden',
@@ -149,34 +149,39 @@ function App() {
 
         {/* Header Section */}
         <div style={{ 
-          position: 'relative', 
+          position: 'fixed', 
+          top: '5px',
+          left: '50%',
+          transform: 'translateX(-50%)',
           zIndex: 10, 
-          marginBottom: '40px',
           animation: 'slideInUp 0.6s ease',
+          textAlign: 'center',
         }}>
           <h1 style={{ 
             fontSize: 56, 
             fontWeight: 700, 
             marginBottom: 12,
             letterSpacing: '-1px',
+            color: '#fff',
+            textShadow: '0 4px 20px rgba(0, 0, 0, 0.6)',
           }}>
             Hey! <span style={{ 
-              background: isDark 
-                ? 'linear-gradient(135deg, #4ef3c2, #2eccd8)' 
-                : 'linear-gradient(135deg, #00d4aa, #0099ff)',
+              background: 'linear-gradient(135deg, #4ef3c2, #2eccd8)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
+              textShadow: 'none',
             }}>
               Bro
             </span>
           </h1>
           <p style={{ 
             fontSize: 18, 
-            color: isDark ? '#b0b0b0' : '#666',
+            color: '#b0b0b0',
             fontWeight: 400,
             marginBottom: 0,
             letterSpacing: '0.3px',
+            textShadow: '0 2px 12px rgba(0, 0, 0, 0.5)',
           }}>
             What can I help with?
           </p>
@@ -189,9 +194,9 @@ function App() {
             position: 'fixed',
             top: '20px',
             left: '30px',
-            background: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)',
-            border: `1px solid ${isDark ? 'rgba(255,255,255,0.2)' : 'rgba(0,0,0,0.2)'}`,
-            color: isDark ? '#fff' : '#1a1a1a',
+            background: 'rgba(20, 22, 46, 0.6)',
+            border: '1px solid rgba(78, 243, 194, 0.3)',
+            color: '#fff',
             borderRadius: '12px',
             padding: '10px 16px',
             fontSize: '16px',
@@ -205,12 +210,14 @@ function App() {
             gap: '8px',
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.background = isDark ? 'rgba(255,255,255,0.15)' : 'rgba(0,0,0,0.15)';
+            e.currentTarget.style.background = 'rgba(20, 22, 46, 0.8)';
             e.currentTarget.style.transform = 'scale(1.05)';
+            e.currentTarget.style.boxShadow = '0 0 16px rgba(78,243,194,0.2)';
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.background = isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)';
+            e.currentTarget.style.background = 'rgba(20, 22, 46, 0.6)';
             e.currentTarget.style.transform = 'scale(1)';
+            e.currentTarget.style.boxShadow = 'none';
           }}
         >
           {isDark ? '☀️' : '🌙'}
@@ -221,18 +228,12 @@ function App() {
           style={{
             width: '700px',
             maxWidth: '90vw',
-            background: isDark 
-              ? 'rgba(20,22,46,0.75)' 
-              : 'rgba(255,255,255,0.85)',
-            backdropFilter: 'blur(20px)',
+            background: 'rgba(15, 20, 35, 0.85)',
+            backdropFilter: 'blur(30px)',
             borderRadius: 28,
             padding: 32,
-            boxShadow: isDark
-              ? '0 8px 32px rgba(0,0,0,0.3), 0 0 20px rgba(78,243,194,0.1)'
-              : '0 8px 32px rgba(0,0,0,0.1), 0 0 20px rgba(0,212,170,0.05)',
-            border: isDark 
-              ? '1px solid rgba(78,243,194,0.2)' 
-              : '1px solid rgba(0,212,170,0.2)',
+            boxShadow: '0 16px 60px rgba(0,0,0,0.5), 0 0 30px rgba(78,243,194,0.15)',
+            border: '1px solid rgba(78,243,194,0.3)',
             animation: 'slideInUp 0.8s ease 0.1s backwards',
             transition: 'all 0.3s ease',
           }}
@@ -253,7 +254,7 @@ function App() {
                 alignItems: 'center',
                 justifyContent: 'center',
                 height: '100%',
-                color: isDark ? 'rgba(255,255,255,0.3)' : 'rgba(0,0,0,0.3)',
+                color: 'rgba(255,255,255,0.4)',
                 fontSize: 14,
                 fontWeight: 500,
                 textAlign: 'center',
@@ -277,16 +278,9 @@ function App() {
                     maxWidth: '70%',
                     background:
                       msg.sender === 'user'
-                        ? isDark 
-                          ? 'linear-gradient(135deg, #1e3a2f, #2a5a4a)' 
-                          : 'linear-gradient(135deg, #00d4aa, #00c99f)'
-                        : isDark
-                          ? 'rgba(255,255,255,0.08)'
-                          : 'rgba(0,0,0,0.06)',
-                    color:
-                      msg.sender === 'user'
-                        ? '#fff'
-                        : isDark ? '#fff' : '#1a1a1a',
+                        ? 'linear-gradient(135deg, #1e3a2f, #2a5a4a)' 
+                        : 'rgba(255,255,255,0.1)',
+                    color: '#fff',
                     padding: '14px 18px',
                     borderRadius: 16,
                     fontSize: 15,
@@ -312,13 +306,7 @@ function App() {
                 alignItems: 'center',
                 gap: '8px',
               }}>
-                <span style={{
-                  display: 'inline-block',
-                  width: '8px',
-                  height: '8px',
-                  borderRadius: '50%',
-                  animation: 'pulse 1.5s ease-in-out infinite',
-                }}>●</span>
+                
                 Thinking...
               </div>
             )}
@@ -332,24 +320,18 @@ function App() {
               display: 'flex',
               alignItems: 'center',
               gap: 12,
-              background: isDark 
-                ? 'rgba(20,22,46,0.6)' 
-                : 'rgba(0,0,0,0.03)',
+              background: 'rgba(15, 20, 35, 0.9)',
               borderRadius: 20,
               padding: '12px 20px',
-              border: isDark
-                ? '1px solid rgba(78,243,194,0.15)'
-                : '1px solid rgba(0,212,170,0.15)',
+              border: '1px solid rgba(78,243,194,0.3)',
               transition: 'all 0.3s ease',
             }}
             onFocus={(e) => {
-              e.currentTarget.style.borderColor = isDark ? 'rgba(78,243,194,0.4)' : 'rgba(0,212,170,0.4)';
-              e.currentTarget.style.boxShadow = isDark 
-                ? '0 0 16px rgba(78,243,194,0.1)' 
-                : '0 0 16px rgba(0,212,170,0.1)';
+              e.currentTarget.style.borderColor = 'rgba(78,243,194,0.5)';
+              e.currentTarget.style.boxShadow = '0 0 20px rgba(78,243,194,0.15)';
             }}
             onBlur={(e) => {
-              e.currentTarget.style.borderColor = isDark ? 'rgba(78,243,194,0.15)' : 'rgba(0,212,170,0.15)';
+              e.currentTarget.style.borderColor = 'rgba(78,243,194,0.3)';
               e.currentTarget.style.boxShadow = 'none';
             }}
           >
@@ -369,19 +351,17 @@ function App() {
                 flex: 1,
                 background: 'transparent',
                 border: 'none',
-                color: isDark ? '#fff' : '#1a1a1a',
+                color: '#fff',
                 outline: 'none',
                 fontSize: 15,
                 fontWeight: 400,
               }}
               onFocus={(e) => {
-                e.currentTarget.parentElement!.style.borderColor = isDark ? 'rgba(78,243,194,0.4)' : 'rgba(0,212,170,0.4)';
-                e.currentTarget.parentElement!.style.boxShadow = isDark 
-                  ? '0 0 16px rgba(78,243,194,0.1)' 
-                  : '0 0 16px rgba(0,212,170,0.1)';
+                e.currentTarget.parentElement!.style.borderColor = 'rgba(78,243,194,0.5)';
+                e.currentTarget.parentElement!.style.boxShadow = '0 0 20px rgba(78,243,194,0.15)';
               }}
               onBlur={(e) => {
-                e.currentTarget.parentElement!.style.borderColor = isDark ? 'rgba(78,243,194,0.15)' : 'rgba(0,212,170,0.15)';
+                e.currentTarget.parentElement!.style.borderColor = 'rgba(78,243,194,0.3)';
                 e.currentTarget.parentElement!.style.boxShadow = 'none';
               }}
             />
@@ -390,9 +370,7 @@ function App() {
               onClick={handleSend}
               disabled={loading || !input.trim()}
               style={{
-                background: isDark
-                  ? 'linear-gradient(135deg, #4ef3c2, #2eccd8)'
-                  : 'linear-gradient(135deg, #00d4aa, #0099ff)',
+                background: 'linear-gradient(135deg, #4ef3c2, #2eccd8)',
                 border: 'none',
                 borderRadius: 14,
                 padding: '10px 18px',
@@ -409,9 +387,7 @@ function App() {
               onMouseEnter={(e) => {
                 if (!loading && input.trim()) {
                   e.currentTarget.style.transform = 'translateY(-2px)';
-                  e.currentTarget.style.boxShadow = isDark
-                    ? '0 8px 20px rgba(78,243,194,0.3)'
-                    : '0 8px 20px rgba(0,212,170,0.3)';
+                  e.currentTarget.style.boxShadow = '0 8px 20px rgba(78,243,194,0.3)';
                 }
               }}
               onMouseLeave={(e) => {
@@ -443,12 +419,12 @@ function App() {
           }
           
           ::-webkit-scrollbar-thumb {
-            background: ${isDark ? 'rgba(78,243,194,0.3)' : 'rgba(0,212,170,0.3)'};
+            background: rgba(78,243,194,0.3);
             border-radius: 4px;
           }
           
           ::-webkit-scrollbar-thumb:hover {
-            background: ${isDark ? 'rgba(78,243,194,0.5)' : 'rgba(0,212,170,0.5)'};
+            background: rgba(78,243,194,0.5);
           }
         `}</style>
       </div>
