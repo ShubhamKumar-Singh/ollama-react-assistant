@@ -9,12 +9,14 @@ interface ChatState {
     messages: Message[];
     input: string;
     loading: boolean;
+    theme: 'light' | 'dark';
 }
 
 const initialState: ChatState = {
     messages: [],
     input: '',
     loading: false,
+    theme: 'dark',
 };
 
 const chatSlice = createSlice({
@@ -33,8 +35,11 @@ const chatSlice = createSlice({
         resetInput(state) {
             state.input = '';
         },
+        toggleTheme(state) {
+            state.theme = state.theme === 'dark' ? 'light' : 'dark';
+        },
     },
 });
 
-export const { setInput, addMessage, setLoading, resetInput } = chatSlice.actions;
+export const { setInput, addMessage, setLoading, resetInput, toggleTheme } = chatSlice.actions;
 export default chatSlice.reducer;
